@@ -89,13 +89,66 @@ venv:
 	fi
 
 ###############################################################################
-# Placeholder - Testing
+# Testing
 ###############################################################################
 
 test:
-	@echo $(H1)Running tests$(H1END)
-	@echo Placeholder for test process
+	@echo $(H1)Running tests$(HEADER_EXTRA)$(H1END)
+	$(VENV_BIN)/python -m pytest $(COV)
 	@echo
+
+test-cover: COV=--cov=$(PROJECT_NAME) --cov=tests
+test-cover: HEADER_EXTRA=' (with coverage)'
+test-cover: test
+
+# test-all is meant to test everything — even this Makefile
+test-all: clean install test test-dist codestyle
+	@echo
+
+test-dist: test-sdist test-bdist-wheel
+	@echo
+
+
+test-sdist: clean venv
+	@echo $(H1)Testing sdist build an installation$(H1END)
+	$(VENV_PYTHON) setup.py sdist
+	$(VENV_PIP) install --force-reinstall --upgrade dist/*.gz
+	$(VENV_BIN)/{PROJECT_NAME} --version
+	@echo
+
+test-bdist-wheel: clean venv
+	@echo $(H1)Testing wheel build an installation$(H1END)
+	$(VENV_PIP) install wheel
+	$(VENV_PYTHON) setup.py bdist_wheel
+	$(VENV_PIP) install --force-reinstall --upgrade dist/*.whl
+	$(VENV_BIN)/{PROJECT_NAME} --version
+	@echo
+
+
+twine-check:
+	twine check dist/*
+
+# Kept for convenience, "make codestyle" is preferred though
+pycodestyle: codestyle
+
+
+codestyle:
+	@echo $(H1)Running flake8$(H1END)
+	@[ -f $(VENV_BIN)/flake8 ] || $(VENV_PIP) install --upgrade --editable '.[dev]'
+	$(VENV_BIN)/flake8 $(PROJECT_NAME)/ tests/ *.py
+	@echo
+
+codecov-upload:
+	@echo $(H1)Running codecov$(H1END)
+	@[ -f $(VENV_BIN)/codecov ] || $(VENV_PIP) install codecov
+	# $(VENV_BIN)/codecov --required
+	$(VENV_BIN)/codecov
+	@echo
+
+doc-check:
+	@echo $(H1)Running documentations checks$(H1END)
+	@echo Placeholder for documentation checks
+
 
 
 ###############################################################################
