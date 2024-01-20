@@ -44,7 +44,11 @@ Options:
 Here is an example of how to use the tool:
 
 ```bash
-s3psync --aws-profile tmpuser_for_data_upload --s3-bucket premtests1232 --parent-dir "/path/to/testdir" --parallel-instances 30
+s3psync \
+  --aws-profile tmpuser_for_data_upload \
+  --s3-bucket premtests1232 \
+  --parent-dir "/path/to/testdir" \
+  --parallel-instances 30
 ```
 
 Note that you need to have the necessary AWS permissions to perform S3 uploads. The tool will use the AWS CLI to perform the upload, so you need to have the AWS CLI installed and configured with the appropriate credentials. You can use the `--aws-profile` option to specify the AWS profile to use.
