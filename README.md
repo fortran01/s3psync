@@ -7,6 +7,7 @@ This script is used to sync files and folders to an S3 bucket in parallel, lever
 - Python 3.10 or higher
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - AWS profile with the necessary permissions to perform S3 uploads (see [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html) for more information on how to set up AWS profiles)
+- Make utility ([Make for Windows](https://gnuwin32.sourceforge.net/packages/make.htm), Make for Linux and Mac is usually pre-installed)
   
 ## Usage
 
