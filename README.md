@@ -1,6 +1,5 @@
 # S3 Parallel Sync
 
-[![CodeQL](https://github.com/fortran01/s3psync/actions/workflows/codeql.yml/badge.svg)](https://github.com/fortran01/s3psync/actions/workflows/codeql.yml)
 [![Dependency Review](https://github.com/fortran01/s3psync/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/fortran01/s3psync/actions/workflows/dependency-review.yml)
 [![Python package](https://github.com/fortran01/s3psync/actions/workflows/python-package.yml/badge.svg)](https://github.com/fortran01/s3psync/actions/workflows/python-package.yml)
 [![PyPI](https://github.com/fortran01/s3psync/actions/workflows/release-pypi.yml/badge.svg)](https://github.com/fortran01/s3psync/actions/workflows/release-pypi.yml)
