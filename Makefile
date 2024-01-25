@@ -1,6 +1,6 @@
 # https://github.com/httpie/cli/blob/master/Makefile
 
-# .PHONY: build
+.PHONY: build
 
 PROJECT_NAME=s3psync
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
