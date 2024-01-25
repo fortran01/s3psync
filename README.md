@@ -19,7 +19,7 @@ To install the tool, run the following command:
 
 ```bash
 python -m pip install --upgrade pip wheel
-python -m pip install s3psync
+python -m pip install --upgrade s3psync
 ```
 
 To sync files and folders to an S3 bucket in parallel, run the following command:
