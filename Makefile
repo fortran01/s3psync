@@ -152,22 +152,22 @@ doc-check:
 
 
 ###############################################################################
-# Placeholder - Publishing to PyPi
+# Publishing to PyPi
 ###############################################################################
 
 build:
-	@echo $(H1)Building for PyPi$(H1END)
-	@echo Placeholder for build process
-	@echo
+	rm -rf build/ dist/
+	$(VENV_PYTHON) -m build --sdist --wheel --outdir dist/
 
-publish:
-	@echo $(H1)Publishing to PyPi$(H1END)
-	@echo Placeholder for publish process
-	@echo
+publish: test-all publish-no-test
 
 publish-no-test:
-	@echo $(H1)Publishing to PyPi without testing$(H1END)
-	@echo Placeholder for publish process
+	@echo $(H1)Testing wheel build an installation$(H1END)
+	@echo "$(VERSION)"
+	@echo "$(VERSION)" | grep -q "dev" && echo '!!!Not publishing dev version!!!' && exit 1 || echo ok
+	make build
+	make twine-check
+	$(VENV_BIN)/twine upload --repository={PROJECT_NAME} dist/*
 	@echo
 
 ###############################################################################
