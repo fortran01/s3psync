@@ -26,7 +26,7 @@ Next, you need to set up the environment using the provided Makefile. Follow the
 To sync files and folders to an S3 bucket in parallel, run the following command:
 
 ```bash
-madb --help
+s3psync --help
 ```
 
 ```text
