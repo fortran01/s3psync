@@ -3,7 +3,7 @@ s3psync: A simple tool to sync files and directories to Amazon S3.
 
 """
 
-__version__ = '0.0.2'
-__date__ = '2024-01-19'
-__author__ = 'Prem Rara'
-__licence__ = 'MIT'
+__version__ = "0.0.3"
+__date__ = "2024-01-19"
+__author__ = "Prem Rara"
+__licence__ = "MIT"
