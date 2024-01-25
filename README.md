@@ -11,7 +11,6 @@ This script is used to sync files and folders to an S3 bucket in parallel, lever
 - Python 3.10 or higher (includes pip)
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - AWS profile with the necessary permissions to perform S3 uploads (see [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html) for more information on how to set up AWS profiles)
-- Make utility ([Make for Windows](https://gnuwin32.sourceforge.net/packages/make.htm), Make for Linux and Mac is usually pre-installed)
 
 ## Usage
 
@@ -54,6 +53,10 @@ s3psync \
 Note that you need to have the necessary AWS permissions to perform S3 uploads. The tool will use the AWS CLI to perform the upload, so you need to have the AWS CLI installed and configured with the appropriate credentials. You can use the `--aws-profile` option to specify the AWS profile to use.
 
 ## Development
+
+### Dev tools
+
+- Make utility ([Make for Windows](https://gnuwin32.sourceforge.net/packages/make.htm), Make for Linux and Mac is usually pre-installed)
 
 Set up the environment using the provided Makefile. Follow these steps:
 
