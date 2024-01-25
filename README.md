@@ -4,6 +4,7 @@
 [![Dependency Review](https://github.com/fortran01/s3psync/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/fortran01/s3psync/actions/workflows/dependency-review.yml)
 [![Python package](https://github.com/fortran01/s3psync/actions/workflows/python-package.yml/badge.svg)](https://github.com/fortran01/s3psync/actions/workflows/python-package.yml)
 [![PyPI](https://github.com/fortran01/s3psync/actions/workflows/release-pypi.yml/badge.svg)](https://github.com/fortran01/s3psync/actions/workflows/release-pypi.yml)
+
 This script is used to sync files and folders to an S3 bucket in parallel, leveraging the `aws s3 sync` command. The `aws s3 sync` command supports multipart uploads and can utilize up to 10 threads, making it particularly useful when you have a large number of large files to upload. This script allows you to specify the number of parallel instances of `aws s3 sync` to use.
 
 ## Requirements
