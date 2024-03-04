@@ -52,7 +52,7 @@ setup(
             f'{PROJECT_NAME} = {PROJECT_NAME}.__main__:main',
         ],
     },
-    python_requires='>=3.10',
+    python_requires='>=3.9',
     extras_require=extras_require,
     install_requires=install_requires,
     # classifiers=[
