@@ -48,7 +48,15 @@ def sync_file(file_info, parent_dir, aws_profile, s3_bucket):
         s3_path,
     ]
     print(f"Running command: {' '.join(cmd)}")
-    subprocess.run(cmd, check=True)
+    try:
+        # Execute command with output capture
+        subprocess.run(cmd, check=True, capture_output=True, text=True)
+    except subprocess.CalledProcessError as e:
+        # Print stdout and stderr if an exception is raised
+        print(f"Command failed with exit code {e.returncode}")
+        print(f"stdout: {e.stdout}")
+        print(f"stderr: {e.stderr}")
+        raise  # Re-raise the exception if you want to handle it further up the call stack
 
 
 class S3CLI:
