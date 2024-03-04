@@ -1,8 +1,9 @@
 name: PyPI
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - '*'
 
 permissions:
   contents: read
@@ -13,10 +14,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
+          
       - name: Build a binary wheel and a source tarball
         run: make install && make build
 
