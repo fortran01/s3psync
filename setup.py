@@ -11,6 +11,7 @@ tests_require = [
 dev_require = [
     'pytest',
     'flake8',
+    'bump-my-version',
 ]
 install_requires = [
   'pip',
