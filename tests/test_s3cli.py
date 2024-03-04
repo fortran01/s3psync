@@ -49,7 +49,9 @@ def test_sync_file(s3cli):
         os.path.join(parent_dir, file_info[0]),
         f"s3://{s3_bucket}/{file_info[0]}/",
     ]
-    mock_run.assert_called_once_with(expected_cmd, check=True, capture_output=True, text=True)
+    mock_run.assert_called_once_with(expected_cmd, check=True,
+                                     capture_output=True, text=True)
+
 
 def test_sync_file_exception(s3cli, capsys):
     # Setup: Create a mock file info and other parameters
@@ -58,13 +60,16 @@ def test_sync_file_exception(s3cli, capsys):
     aws_profile = "test-profile"
     s3_bucket = "test-bucket"
     error_message = (
-        "Running command: aws s3 sync --profile test-profile --exclude * --include *file1.txt --quiet /fake/dir/dir s3://test-bucket/dir/\n"
+        "Running command: aws s3 sync --profile test-profile --exclude * "
+        "--include *file1.txt --quiet /fake/dir/dir s3://test-bucket/dir/\n"
         "Command failed with exit code 1\n"
         "stdout: Test output\n"
         "stderr: Test error\n"
     )
     # Create a mock exception to simulate subprocess.run failure
-    mock_exception = subprocess.CalledProcessError(1, 'cmd', output='Test output', stderr='Test error')
+    mock_exception = subprocess.CalledProcessError(
+        1, 'cmd', output='Test output', stderr='Test error'
+    )
 
     # Mock the subprocess.run to raise the mock exception
     with patch("subprocess.run", side_effect=mock_exception):
@@ -77,6 +82,7 @@ def test_sync_file_exception(s3cli, capsys):
 
     # Assert that the expected error message is printed to stdout
     assert error_message in captured.out
+
 
 def test_get_files(s3cli):
     # Setup: Create a mock directory with files

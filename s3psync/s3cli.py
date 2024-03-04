@@ -4,23 +4,26 @@ import time
 from multiprocessing import Pool
 
 
-# A function defined at the module level is picklable because the child process can import the module and access the function.
+"""
+A function defined at the module level is picklable.
+This allows child processes to import the module and access the function.
+"""
+
+
 def sync_file(file_info, parent_dir, aws_profile, s3_bucket):
     """
     Synchronizes a single file to an S3 bucket using the AWS CLI.
 
-    This function constructs the necessary AWS CLI command to sync a single file
-    from a local directory to an S3 bucket. It then executes the command using
-    the subprocess module.
+    Constructs and executes the AWS CLI command to sync a single file
+    from a local directory to an S3 bucket using the subprocess module.
 
     Parameters:
-    - file_info (tuple): A tuple containing the relative path and the file name.
-    - parent_dir (str): The parent directory from which the file will be synced.
-    - aws_profile (str): The AWS profile to use for the sync command.
-    - s3_bucket (str): The S3 bucket to which the file will be synced.
+    - file_info (tuple): Contains the relative path and the file name.
+    - parent_dir (str): The parent directory for file syncing.
+    - aws_profile (str): The AWS profile for the sync command.
+    - s3_bucket (str): The target S3 bucket for file syncing.
 
-    The function prints the command that will be run and then executes it,
-    checking for successful completion.
+    Prints and executes the command, checking for successful completion.
     """
     relative_path, file = file_info
     abs_path = (
@@ -56,7 +59,7 @@ def sync_file(file_info, parent_dir, aws_profile, s3_bucket):
         print(f"Command failed with exit code {e.returncode}")
         print(f"stdout: {e.stdout}")
         print(f"stderr: {e.stderr}")
-        raise  # Re-raise the exception if you want to handle it further up the call stack
+        raise
 
 
 class S3CLI:
@@ -87,13 +90,13 @@ class S3CLI:
 
     def get_total_size(self, parent_dir, file_list):
         """
-        This method calculates the total size of all files in the provided list in bytes.
-        Each file in the list is represented as a tuple (relative_path, file_name).
-        The method iterates over the list, calculates the size of each file and sums them up.
+        Calculates total size of all files in bytes.
+        Files are represented as tuples (relative_path, file_name).
+        Iterates over the list, calculates each file's size, and sums them.
 
-        :param parent_dir: The parent directory where the files are located
-        :param file_list: List of tuples, where each tuple represents a file as (relative_path, file_name)
-        :return: total size of all files in the list in bytes
+        :param parent_dir: Directory where files are located
+        :param file_list: List of tuples (relative_path, file_name)
+        :return: Total size of files in bytes
         """
         total_size = 0
         for relative_path, file in file_list:

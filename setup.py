@@ -1,7 +1,4 @@
 # https://github.com/httpie/cli/blob/master/setup.py
-
-import sys
-
 from setuptools import setup, find_packages
 
 PROJECT_NAME = 's3psync'
@@ -11,7 +8,10 @@ this_project = __import__(PROJECT_NAME)
 tests_require = [
     'pytest'
 ]
-dev_require = []
+dev_require = [
+    'pytest',
+    'flake8',
+]
 install_requires = [
   'pip',
   'boto3',
@@ -29,9 +29,12 @@ extras_require = {
     ':sys_platform == "win32"': install_requires_win_only,
 }
 
+
 def long_description():
     with open('README.md', encoding='utf-8') as f:
         return f.read()
+
+
 setup(
     name=PROJECT_NAME,
     version=this_project.__version__,
